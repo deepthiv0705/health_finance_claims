@@ -1,0 +1,201 @@
+provider_id,name,specialty,city
+1,Fischer Center,Dermatology,Scotttown
+2,Gutierrez Center,Radiology,Jacksonchester
+3,Bowers Center,Dermatology,Micheleberg
+4,Olson Clinic,Surgery,Lake Jerrymouth
+5,Wood Clinic,Psychiatry,Micheleberg
+6,Peters Center,General Practice,Lake William
+7,King Clinic,Surgery,South Donnaside
+8,Parker LLP,OB-GYN,South Gabriel
+9,Cooper MD,Neurology,North Jameshaven
+10,Thornton LLP,OB-GYN,Lake Charlestown
+11,Fitzgerald LLP,Psychiatry,South Rebecca
+12,Wyatt Center,Psychiatry,Newmanland
+13,Hopkins LLP,Dermatology,Toddmouth
+14,Adkins Center,Endocrinology,West Jasonstad
+15,Griffin LLP,General Practice,Lake William
+16,Lyons LLP,Psychiatry,Lake William
+17,Martin Clinic,Psychiatry,North Lawrence
+18,Lewis Center,Dermatology,North Andrea
+19,Morales MD,Pediatrics,Port Tamara
+20,Morgan MD,OB-GYN,Port Christopher
+21,Pierce Clinic,General Practice,Lake Jessica
+22,Terry LLP,Surgery,Port Brandi
+23,Mann MD,Cardiology,Emilyview
+24,Martin Clinic,Pediatrics,Michaelbury
+25,Oconnell Center,Oncology,North Stephen
+26,Smith Clinic,Dermatology,New Alexandrahaven
+27,Davis MD,Endocrinology,Coxberg
+28,Thomas LLP,Dermatology,Perezfort
+29,Frost Clinic,Psychiatry,Lindseychester
+30,Graham Center,Oncology,Port Willie
+31,Brown LLP,OB-GYN,Serranoville
+32,Walker Center,Oncology,Hillstad
+33,Miller Center,OB-GYN,South Gabriel
+34,Johnson LLP,Cardiology,Port Christopher
+35,Cruz LLP,Neurology,Michaelbury
+36,Joyce Center,Neurology,North Joseph
+37,Mendez MD,Radiology,Toddmouth
+38,Meyer Clinic,General Practice,Hillstad
+39,Dawson LLP,Oncology,South Rebecca
+40,Harper Clinic,Neurology,Heatherberg
+41,Bautista LLP,Radiology,North Lawrence
+42,Wilkins LLP,OB-GYN,Serranoville
+43,Bowman Center,Oncology,Pearsonview
+44,Gonzales LLP,Endocrinology,North Jameshaven
+45,Harris LLP,Pediatrics,Jamesburgh
+46,Sandoval Center,Orthopedics,North Adamfurt
+47,Lara LLP,Orthopedics,Johnsonton
+48,Mitchell MD,OB-GYN,New Lorraineview
+49,Johnson MD,Surgery,Stewartfurt
+50,Greene MD,Psychiatry,North Adamfurt
+51,Black Clinic,Cardiology,Bellshire
+52,Hall Clinic,General Practice,West Christineborough
+53,Jackson LLP,Neurology,New Adamland
+54,Johnson LLP,Surgery,Sparkstown
+55,Allen MD,General Practice,New Evan
+56,Smith LLP,General Practice,Benjaminland
+57,Moore Center,OB-GYN,Tonyville
+58,Shea MD,OB-GYN,Perezfort
+59,Chan LLP,Orthopedics,Lake Peter
+60,Gomez MD,OB-GYN,South Rebecca
+61,Foster Clinic,Dermatology,Garymouth
+62,Willis Center,Neurology,Lake Jessica
+63,Holmes LLP,Cardiology,Port Tamara
+64,Mclaughlin LLP,Pediatrics,North Gabriel
+65,Jones Clinic,Endocrinology,Toddmouth
+66,Davis Center,Surgery,West Kathymouth
+67,Mitchell MD,Cardiology,Billyfort
+68,Gallegos LLP,Psychiatry,New Brittany
+69,Herman LLP,General Practice,South Paul
+70,Bailey MD,Endocrinology,Jamesburgh
+71,Richmond MD,Pediatrics,North Tinamouth
+72,Hill Center,Radiology,Moorebury
+73,Obrien MD,Dermatology,West Christineborough
+74,Lee LLP,Oncology,Hughesfurt
+75,Spears MD,Surgery,Fordstad
+76,Andrews MD,Orthopedics,Lake Charlestown
+77,Green MD,Dermatology,East Shanefort
+78,Russell Clinic,Endocrinology,Lake Jessica
+79,Rodriguez MD,Oncology,East Jack
+80,Jones Clinic,Radiology,Mooreshire
+81,Phillips Center,Psychiatry,Coxberg
+82,Arroyo Clinic,Endocrinology,Port Christopher
+83,Pratt MD,OB-GYN,South Diamondmouth
+84,Frye Center,General Practice,Moorebury
+85,Walter LLP,Dermatology,West Kristinport
+86,Li Center,Radiology,Melissachester
+87,Andrews LLP,Neurology,East Lauraside
+88,Benson Center,Pediatrics,Sparkstown
+89,Church Clinic,Neurology,New Brittany
+90,Hart LLP,Psychiatry,Newmanland
+91,Carrillo LLP,Cardiology,Melissachester
+92,Todd Center,Dermatology,South Dennisfort
+93,Ali MD,Cardiology,Lake Jessica
+94,Ellis Clinic,Psychiatry,South Dennisfort
+95,Murray Clinic,Endocrinology,Mooreshire
+96,Matthews Center,Neurology,Lake Peter
+97,Johnson MD,General Practice,West Jessica
+98,Wilson LLP,Neurology,Pearsonview
+99,Jones Center,Cardiology,New Nancyberg
+100,Schultz MD,Orthopedics,North Tinamouth
+101,Gamble LLP,OB-GYN,Lake William
+102,Rhodes LLP,Cardiology,East Lauraside
+103,Hall MD,Neurology,New Brittany
+104,Stewart MD,Radiology,Jacksonchester
+105,Moses Center,Psychiatry,North Stephen
+106,Black Center,Psychiatry,Mooreshire
+107,Smith MD,Endocrinology,Lake William
+108,Collier Clinic,Radiology,Lake Jerrymouth
+109,Wright Clinic,Surgery,Port Willie
+110,Davis Clinic,Orthopedics,Lake Jessica
+111,Nunez Center,Oncology,South Gabriel
+112,Nicholson Clinic,Cardiology,Jamesburgh
+113,Jones LLP,Oncology,North Elizabeth
+114,Velazquez Center,Pediatrics,West Kristinport
+115,Woods Center,Oncology,North Lawrence
+116,Gomez LLP,Radiology,New Donna
+117,Shannon Clinic,Pediatrics,Lake Peter
+118,Adams Clinic,Oncology,Lucasland
+119,Valentine LLP,Neurology,Garymouth
+120,Vega LLP,Neurology,Lake Tanyaview
+121,Browning Center,Psychiatry,Serranoville
+122,Porter Clinic,Oncology,Port Bonniefurt
+123,Gonzalez Clinic,Pediatrics,Lake Charlestown
+124,Moss Clinic,Psychiatry,Lake Charlestown
+125,Salas Center,Endocrinology,Woodton
+126,Clark LLP,Radiology,North Lawrence
+127,Harris Center,Psychiatry,Fordstad
+128,Wright LLP,Neurology,Susanberg
+129,Montgomery Clinic,Radiology,Johnsonton
+130,Moore Clinic,Surgery,Melissachester
+131,Rodriguez MD,Endocrinology,Brianaland
+132,Mora Clinic,Pediatrics,Lake Catherine
+133,Lowe MD,Psychiatry,South Donnaside
+134,Alvarado LLP,Orthopedics,South Paul
+135,Austin Center,Dermatology,Lake Jodi
+136,Duran Clinic,Endocrinology,Paulmouth
+137,Weaver LLP,Cardiology,Bethshire
+138,Williams LLP,Radiology,Billyfort
+139,Olson LLP,OB-GYN,New Lorraineview
+140,Oliver Center,Endocrinology,New Evan
+141,Vasquez MD,Cardiology,Melissachester
+142,Galloway Clinic,Surgery,Port Amandaville
+143,Prince Center,Orthopedics,North Jameshaven
+144,Melton MD,Radiology,North Jameshaven
+145,Henry LLP,Neurology,North Tinamouth
+146,Joyce MD,General Practice,Moorebury
+147,Moon Center,Dermatology,East Eric
+148,Ramirez Clinic,Pediatrics,Port Tamara
+149,Walker LLP,Pediatrics,Melissachester
+150,Ray Clinic,Neurology,East Lauraside
+151,Brown LLP,Cardiology,Lake Catherine
+152,Lloyd LLP,Cardiology,Susanberg
+153,Mendoza Clinic,Neurology,West Jessica
+154,Fernandez Center,Pediatrics,Michaelbury
+155,Shaw LLP,Neurology,Nicholasbury
+156,Long MD,Pediatrics,Port Christopher
+157,Parks LLP,Neurology,Lake Melaniestad
+158,Thompson Center,General Practice,Bellshire
+159,Bray MD,General Practice,Valdezberg
+160,Wolfe MD,Surgery,Jamesburgh
+161,Stevens Clinic,OB-GYN,Port Karenside
+162,Norris Clinic,Neurology,Lake William
+163,Smith LLP,Pediatrics,Heatherberg
+164,Clark LLP,Surgery,Newmanland
+165,Carpenter Clinic,Surgery,South Rachel
+166,Nguyen LLP,Psychiatry,East Lauraside
+167,Salazar Clinic,Pediatrics,East Shanefort
+168,Green LLP,Psychiatry,Lucasland
+169,Dunn Clinic,Dermatology,Fordstad
+170,Young MD,Radiology,Lake Peter
+171,Ruiz Clinic,Neurology,Port Bonniefurt
+172,Austin Clinic,Pediatrics,Susanberg
+173,Diaz Center,Surgery,Sparkstown
+174,Jimenez Center,Radiology,Mooreshire
+175,Clark LLP,Radiology,Susanberg
+176,Haynes Center,Neurology,South Desiree
+177,Watson Clinic,Surgery,Bellshire
+178,Dickerson Center,Radiology,East Shanefort
+179,Ramirez MD,Surgery,North Adamfurt
+180,White Center,Cardiology,Lindseychester
+181,Anderson Center,Cardiology,Newmanland
+182,Johnston Center,Endocrinology,West Jasonstad
+183,Perez LLP,Psychiatry,Jacksonchester
+184,Garcia Clinic,Radiology,Mooreshire
+185,Nelson LLP,Orthopedics,Sparkstown
+186,Young Clinic,OB-GYN,Jamesburgh
+187,Reynolds LLP,Oncology,North Adamfurt
+188,James Clinic,Neurology,Bethshire
+189,Thomas MD,Neurology,North Stephen
+190,Haley LLP,Orthopedics,Emilyview
+191,Hernandez LLP,OB-GYN,New Dawnborough
+192,Shaffer LLP,Psychiatry,Port Erikachester
+193,Thompson LLP,Psychiatry,Bellshire
+194,Porter LLP,Pediatrics,Jamesburgh
+195,Cowan MD,Radiology,East Lauraside
+196,Atkinson Clinic,Oncology,New Lorraineview
+197,Holmes Center,Dermatology,New Evan
+198,Le Center,Orthopedics,Cherylfurt
+199,Floyd LLP,Radiology,South Diamondmouth
+200,Evans LLP,OB-GYN,East Eric

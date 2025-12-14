@@ -19,12 +19,7 @@ select
         claim_ts,
         adjudicated_ts
     ) as turnaround_days,
-
-    case
-        when amount >= 50000 then 'HIGH'
-        else 'NORMAL'
-    end as claim_value_bucket,
-
+    claim_value_bucket,
     status,
     ingestion_ts
 

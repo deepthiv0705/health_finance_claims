@@ -15,6 +15,9 @@ select
     round(paid_amt / nullif(amount,0), 2) as reimbursement_ratio,
     turnaround_days,
   {{ claim_value_bucket('amount') }} as claim_value_bucket,
+    case when amount >= 50000 then '1'
+        else '0'
+    end as high_value_flag,
     status,
     ingestion_ts
 

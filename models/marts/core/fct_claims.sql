@@ -25,6 +25,8 @@ from {{ ref('stg_stg__claims') }}
 
 {% if is_incremental() %}
 where ingestion_ts > (
-    select max(ingestion_ts) from {{ this }}
-)
+    coalesce(
+    (select max(ingestion_ts) from {{ this }}),
+    '1900-01-01'
+))
 {% endif %}

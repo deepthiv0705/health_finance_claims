@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: fct_claims
+    description: "Core fact table at claim grain"
+
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
+
+      - name: member_id
+        tests:
+          - not_null
+
+      - name: amount
+        tests:
+          - not_null
+
+      - name: paid_amt
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "paid_amt <= amount"

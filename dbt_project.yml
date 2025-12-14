@@ -29,6 +29,3 @@ models:
 flags:
   require_generic_test_arguments_property: true
 
-snapshots:
-  health_finance_claims:
-    +schema: dbt_snp

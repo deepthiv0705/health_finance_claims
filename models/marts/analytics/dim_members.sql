@@ -6,4 +6,4 @@ select
     dbt_valid_from,
     dbt_valid_to,
     case when dbt_valid_to is null then 'Y' else 'N' end as is_current
-from {{ ref('members_snapshot') }}
+from {{ ref('stg_stg__members') }}

@@ -41,7 +41,8 @@ claims_schema = StructType([
     StructField("claim_date", StringType(), True),
     StructField("amount", DoubleType(), True),
     StructField("paid_amt", DoubleType(), True),
-    StructField("status", StringType(), True)
+    StructField("status", StringType(), True),
+    StructField("adjudicated_date", StringType(), True)
     # additional raw columns if present will be ignored
 ])
 
@@ -69,6 +70,15 @@ df = df.withColumn("claim_ts",
                    F.coalesce(F.col("claim_ts"),
                               F.to_timestamp(F.col("claim_date"), "yyyy-MM-dd")))
 
+# Parse adjudicated_date with fallback
+df = df.withColumn("adjudicated_ts",
+                   F.to_timestamp(F.col("adjudicated_date"), "yyyy-MM-dd HH:mm:ss"))
+# If parsing fails, try another format (just example)
+df = df.withColumn("adjudicated_ts",
+                   F.coalesce(F.col("adjudicated_ts"),
+                              F.to_timestamp(F.col("adjudicated_date"), "yyyy-MM-dd")))
+                              
+
 # Drop rows missing critical IDs
 df = df.filter(F.col("claim_id").isNotNull() & F.col("member_id").isNotNull())
 
@@ -91,7 +101,8 @@ df = df.withColumn("high_value_flag", F.when(F.col("amount") >= 50000.0, F.lit(1
 # (if you have adjudicated_date column, parse and compute difference)
 if 'adjudicated_date' in df.columns:
     df = df.withColumn("adjudicated_ts",
-                       F.to_timestamp(F.col("adjudicated_date"), "yyyy-MM-dd HH:mm:ss"))
+                       F.coalesce(F.col("adjudicated_ts"),
+                              F.to_timestamp(F.col("adjudicated_date"), "yyyy-MM-dd")))
     df = df.withColumn("turnaround_days", F.datediff(F.col("adjudicated_ts"), F.col("claim_ts")))
 else:
     df = df.withColumn("turnaround_days", F.lit(None).cast(IntegerType()))
@@ -111,7 +122,7 @@ if bad_amounts.count() > 0:
 # --------- 6. Final column selection & ordering ----------
 final_cols = [
     "claim_id", "member_id", "provider_id", "diagnosis", "claim_ts",
-    "amount", "paid_amt", "status",
+    "amount", "paid_amt", "status", "adjudicated_ts",
     "reimbursement_ratio", "turnaround_days", "high_value_flag",
     "ingestion_ts", "year", "month"
 ]

@@ -52,7 +52,7 @@ sfOptions = {
 # --------- 2. List of datasets ----------
 datasets = [
     {"path": "s3://projinsuranceclaim/clean/members/",   "table": "MEMBERS"},
-#   {"path": "s3://projinsuranceclaim/clean/claims/",    "table": "CLAIMS"},
+    {"path": "s3://projinsuranceclaim/clean/claims/",    "table": "CLAIMS"},
     {"path": "s3://projinsuranceclaim/clean/providers/", "table": "PROVIDERS"},
 ]
 

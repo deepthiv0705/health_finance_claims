@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: claim_raw
+    database: ANALYTICS
+    schema: STG
+    tables:
+      - name: CLAIMS
+      - name: MEMBERS
+      - name: PROVIDERS

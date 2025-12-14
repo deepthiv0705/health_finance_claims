@@ -13,14 +13,8 @@ select
     paid_amt,
 
     round(paid_amt / nullif(amount,0), 2) as reimbursement_ratio,
-
-    datediff(
-        day,
-        claim_ts,
-        adjudicated_ts
-    ) as turnaround_days,
-    {{ claim_value_bucket('amount') }} as claim_value_bucket,
-
+    turnaround_days,
+  {{ claim_value_bucket('amount') }} as claim_value_bucket,
     status,
     ingestion_ts
 

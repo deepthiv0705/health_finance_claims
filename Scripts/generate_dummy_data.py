@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import random
 
 # ------- CONFIG -------
-OUT_DIR = Path("C:/Users/DEEPTHI/health_finance_claims/Data")   # repo_root/data
+OUT_DIR = Path("/mnt/c/Users/DEEPTHI/health_finance_claims/Data")   # repo_root/data
 CSV_DIR = OUT_DIR / "csv"
 PARQUET_DIR = OUT_DIR / "parquet"
 
@@ -151,7 +151,6 @@ def save_df(df: pd.DataFrame, name: str):
     print(f"Written: {csv_path} ({df.shape})")
     print(f"Written: {pq_path} ({df.shape})")
 	
-
 # Add partition columns for claims
 df_claims["year"] = pd.to_datetime(df_claims["claim_date"]).dt.year
 df_claims["month"] = pd.to_datetime(df_claims["claim_date"]).dt.month
@@ -167,4 +166,5 @@ save_df_partitioned(
     partition_cols=["year", "month"]
 )
 print("DONE: Dummy data generated.")
+
 

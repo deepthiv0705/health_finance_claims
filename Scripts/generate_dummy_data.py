@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import random
 
 # ------- CONFIG -------
-OUT_DIR = Path("C:/Users/DEEPTHI/health-finance-claims/Data")   # repo_root/data
+OUT_DIR = Path("C:/Users/DEEPTHI/health_finance_claims/Data")   # repo_root/data
 CSV_DIR = OUT_DIR / "csv"
 PARQUET_DIR = OUT_DIR / "parquet"
 

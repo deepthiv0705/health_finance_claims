@@ -1,0 +1,110 @@
+**Architectural Principles Followed**
+
+- Separation of raw, processed, and analytics layers
+- Idempotent ETL design
+- Schema evolution tolerance
+- Cloud-native & scalable
+- Orchestration-driven execution
+
+##1. Architecture Summary**
+
+This architecture mirrors real-world healthcare and finance analytics platforms and demonstrates strong ownership of:
+- Ingestion
+- Processing
+- Storage
+- Transformation
+- Orchestration
+
+```md
+
+\# Airflow Orchestration Strategy
+
+This document explains how Apache Airflow is used to orchestrate the end-to-end data pipeline.
+
+\## 1. DAG Overview
+
+DAG Name:
+health_finance_claims_end_to_end_pipeline
+
+Execution Type:
+\- Batch
+\- Time-based schedule
+\- Manual trigger supported
+```
+
+\## 2. DAG Structure
+
+```text
+
+start
+↓
+generate_dummy_data (PythonOperator)
+↓
+upload_to_s3 (PythonOperator)
+↓
+glue_csv_to_parquet (GlueJobOperator)
+↓
+glue_parquet_to_snowflake (GlueJobOperator)
+↓
+dbt_build (BashOperator)
+↓
+end
+```
+Each task represents a **single responsibility**, improving readability and maintainability.
+
+##2. Sequential Dependency Design
+
+- Downstream tasks depend strictly on upstream success
+- Prevents partial or inconsistent data states
+- Guarantees data correctness before transformations
+
+Why Sequential?
+
+- ETL pipelines require strong ordering guarantees
+- Analytics jobs should never run on incomplete data
+
+##3. Retry Strategy
+
+default_args = {
+"retries": 1
+}
+
+Retry Applied To:
+
+- Python ingestion tasks
+- Glue jobs
+- dbt execution
+
+Purpose:
+
+- Handles transient failures
+- Network or AWS API issues
+- Temporary resource unavailability
+
+##4. Failure Handling
+
+- Task-level failure isolation
+- Automatic retry on failure
+- DAG stops execution if a critical task fails
+- Logs available per task for debugging
+
+**Observability**
+
+- Logs accessible via Airflow UI
+- Clear separation of task logs
+- Enables fast root cause analysis
+
+##5. Operator Choices
+
+| **Task** | **Operator** | **Reason** |
+| --- | --- | --- |
+| Python scripts | PythonOperator | Direct callable execution |
+| AWS Glue | GlueJobOperator | Native AWS integration |
+| dbt | BashOperator | CLI-based execution |
+
+##6. Orchestration Design Philosophy
+
+- Simple DAG > Complex logic
+- Business flow reflected clearly
+- Easy extensibility (new tasks can be added)
+- Production-aligned orchestration pattern

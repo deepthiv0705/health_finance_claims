@@ -1,0 +1,87 @@
+# System Architecture
+
+This document describes the end-to-end architecture of the \*\*Health Finance Claims Analytics Pipeline\*\*, explaining the data flow, technology choices, and partitioning strategy.
+---
+
+## 1. End-to-End Data Flow
+
+```text
+
+Local Python(Data Generation)
+↓
+Amazon S3 (Raw CSV)
+↓
+AWS Glue (Spark ETL)
+↓
+Amazon S3 (Clean Parquet)
+↓
+AWS Glue (Load Job)
+↓
+Snowflake (Analytics Storage)
+↓
+dbt (Transformations & Marts)
+↓
+BI / Analytics / Downstream Consumers
+```
+
+**Flow Description**
+
+- **Data Generation**
+  - Python scripts generate synthetic healthcare claims, members, and providers data.
+  - Output written as CSV (raw) and Parquet (local validation).
+- **Raw Ingestion (S3)**
+  - Raw CSV files uploaded to Amazon S3.
+  - Acts as the immutable landing zone.
+- **Distributed Processing (Glue - Spark)**
+  - CSV → Parquet conversion
+  - Schema normalization
+  - Data quality cleanup
+  - Partitioning applied for query optimization
+- **Analytics Load**
+  - Clean Parquet data loaded into Snowflake using Glue Spark job.
+- **Analytics Modeling (dbt)**
+  - Staging → Core → Mart layers
+  - Snapshots for history tracking
+  - Tests ensure data correctness
+  
+##2. Why S3 → Glue → Snowflake?
+
+**Amazon S3 (Data Lake)**
+- Cheap, durable, scalable storage
+- Supports raw + processed layers
+- Decouples ingestion from processing
+
+**AWS Glue (Spark)**
+- Serverless Spark (no cluster management)
+- Handles large-scale transformations
+- Native integration with S3 & Snowflake
+- Ideal for batch ETL workloads
+
+**Snowflake (Analytics Warehouse)**
+- Optimized for analytical queries
+- Separation of compute and storage
+- Supports dbt-native transformations
+- Excellent concurrency for BI use cases
+This architecture follows the **modern data stack** and aligns with **lakehouse-style patterns** used in production systems.
+
+##3. Partitioning Strategy
+
+**Claims Table (High-Volume Fact)**
+Partition Columns:
+- year
+- month
+
+s3://bucket/claims/
+├── year=2024/month=1/
+├── year=2024/month=2/
+├── year=2025/month=1/
+
+**Why This Works**
+- Enables partition pruning
+- Reduces scan cost
+- Improves Glue + Snowflake load performance
+- Aligns with time-based analytical queries
+
+**Partitioning Decisions**
+- Only applied to **high-cardinality fact data**
+- Dimensions kept unpartitioned for simplicity

@@ -1,0 +1,81 @@
+Airflow acts as the **control plane** for the entire data platform, coordinating compute, storage, and analytics layers reliably.
+
+
+# Data Modeling Strategy
+This document explains the analytical data model designed in Snowflake.
+
+## 1. Modeling Approach
+- Dimensional modeling (Star Schema)
+- Clear separation of facts and dimensions
+- Optimized for analytical queries
+
+
+## 2. Fact Tables
+
+### Fact: \`fact_claims\`
+
+**Grain**
+> One row per insurance claim
+
+| Column | Description |
+|-----|-----------|
+| claim_id | Unique claim identifier |
+| member_id | Foreign key to dim_members |
+| provider_id | Foreign key to dim_providers |
+| claim_date | Date of claim |
+| amount | Billed amount |
+| paid_amt | Paid amount |
+| status | Claim status |
+| ingestion_ts | Load timestamp |
+
+Purpose:
+
+- Cost analysis
+- Claims volume
+- Payment ratios
+- Trend reporting
+
+
+## 3. Dimension Tables
+
+### Dimension: \`dim_members\`
+- member_id (PK)
+- name
+- age
+- gender
+- location
+
+### Dimension: \`dim_providers\`
+
+- provider_id (PK)
+- name
+- specialty
+- city
+
+## 4. Slowly Changing Dimensions
+
+- Managed via dbt snapshots
+- Type 2 SCD
+- Tracks historical attribute changes
+
+## 5. Modeling Principles
+
+- Surrogate keys avoided for simplicity
+- Business keys preserved
+- Facts kept narrow
+- Dimensions denormalized for performance
+
+## 6. Analytics Use Cases Enabled
+
+- Claims cost analysis
+- Provider performance
+- Member utilization trends
+- Time-series reporting
+
+## 7. Summary
+
+The data model is designed to be:
+- Easy to query
+- BI-friendly
+- Scalable
+- Aligned with real healthcare analytics workloads

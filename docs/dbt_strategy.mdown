@@ -1,0 +1,98 @@
+# dbt Strategy & Analytics Engineering
+
+This document explains how dbt is used for transformation, testing, and analytics modeling.
+
+## 1. Why dbt?
+dbt was chosen to:
+- Apply software engineering principles to analytics
+- Enable version-controlled SQL transformations
+- Implement tests and documentation
+- Maintain model lineage
+
+## 2. dbt Layered Architecture
+
+```text
+Sources
+↓
+Staging Models
+↓
+Core Models
+↓
+Mart Models
+```
+
+**Staging**
+- One-to-one with source tables
+- Light transformations
+- Standardized naming & types
+
+**Core**
+- Business logic applied
+- Clean joins between entities
+
+**Mart**
+- Fact & dimension models
+- BI-consumable tables
+
+##3. Snapshots Usage
+
+Snapshots implemented for:
+- Members
+- Providers
+
+Snapshot Type:
+Slowly Changing Dimension Type 2
+
+Benefits:
+- Historical tracking
+- Auditing
+- Time-based analysis
+
+##4. Macros
+
+Macros used for:
+- Reusable SQL logic
+- Standardized column handling
+- Reducing duplication
+
+Example Use Cases:
+- Surrogate key generation
+- Date standardization
+- Audit columns
+
+##5. Testing Philosophy
+
+Tests Implemented
+- not_null
+- unique
+- Referential integrity
+- Accepted values
+
+Testing Levels:
+- Source-level
+- Model-level
+- Mart-level
+
+Goal:
+- Catch data issues early
+- Enforce business rules
+- Increase trust in analytics outputs
+
+##6. dbt Execution
+
+Executed via Airflow using:
+- bash
+- Copy code
+- dbt build
+
+Ensures:
+- Models
+- Snapshots
+- Tests
+- run as a single unit.
+
+##7. Summary
+
+- dbt transforms Snowflake into a trusted analytics layer by combining transformation logic, testing, documentation, and version control.
+- yaml
+- Copy code

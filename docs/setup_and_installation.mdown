@@ -1,0 +1,199 @@
+# Setup & Installation Guide
+
+This document describes the complete setup and installation steps required to run the \*\*Health Finance Claims - End-to-End Data Engineering Pipeline\*\* locally and in a cloud-integrated environment.
+The project simulates a production-grade analytics pipeline spanning \*\*data generation, cloud ingestion, distributed processing, orchestration, and analytics modeling\*\*.
+
+\---
+
+## 1. System Prerequisites
+
+\### 1.1 Operating System
+\- Windows 10 / 11
+\- Ubuntu 22.04 LTS (via WSL2)
+\> WSL2 is used to provide a Linux-based runtime for Airflow, dbt, and Python tooling while leveraging Windows for development.
+
+\---
+
+## 2. Ubuntu (WSL2) Setup
+
+### 2.1 Enable WSL2 (Windows - Run as Admin)
+\`\`\`powershell
+wsl --install -d Ubuntu-22.04
+Restart the system when prompted.
+
+###2.2 Verify Installation
+
+wsl --version
+lsb_release -a
+
+##3. Python Environment Setup
+
+###3.1 Install Python & Virtual Environment
+
+sudo apt update
+sudo apt install -y python3 python3-venv python3-pip
+
+###3.2 Create Project Virtual Environment
+
+cd ~/airflow
+python3 -m venv venv
+source venv/bin/activate
+
+All project dependencies (Airflow, dbt, AWS SDKs) are installed inside this isolated environment.
+
+##4. Apache Airflow Setup (Local)
+
+###4.1 Install Airflow (Official Constraint-based Install)
+
+AIRFLOW_VERSION=2.9.3
+PYTHON_VERSION=3.10
+CONSTRAINT_URL="<https://raw.githubusercontent.com/apache/airflow/constraints-\${AIRFLOW_VERSION}/constraints-\${PYTHON_VERSION}.txt>"
+pip install "apache-airflow==\${AIRFLOW_VERSION}" --constraint "\${CONSTRAINT_URL}"
+
+###4.2 Initialize Airflow Metadata DB
+
+export AIRFLOW_HOME=~/airflow
+airflow db init
+
+###4.3 Create Admin User
+
+airflow users create \\
+\--username admin \\
+\--firstname Admin \\
+\--lastname User \\
+\--role Admin \\
+\--email <admin@example.com>
+
+###4.4 Start Airflow Services
+
+airflow webserver -p 8080
+airflow scheduler
+Access UI:
+<http://localhost:8080>
+
+##5. AWS Setup
+
+###5.1 IAM Configuration
+Create an IAM user with programmatic access and attach:
+AmazonS3FullAccess
+AWSGlueServiceRole
+CloudWatchLogsFullAccess
+
+###5.2 Configure AWS CLI
+
+aws configure
+Provide:
+AWS Access Key
+AWS Secret Key
+Region (e.g., ap-southeast-2)
+
+##6. Amazon S3 Setup
+
+Buckets created:
+health-finance-claims/raw
+health-finance-claims/clean
+
+Purpose:
+Raw CSV ingestion
+Parquet storage for downstream analytics
+
+##7. AWS Glue Setup
+
+###7.1 Glue Jobs Created
+
+Job Name Purpose
+INSURANCE_CLAIMS_CLEAN CSV → Parquet + Cleaning
+glue_sf_load Parquet → Snowflake
+
+###7.2 Glue Configuration
+
+Glue Version: 4.0
+Spark: 3.5
+Language: PySpark
+Job bookmarks enabled
+IAM role attached with S3 + Snowflake access
+
+##8. Snowflake Setup
+
+###8.1 Objects Created
+
+Database: ANALYTICS
+Schemas:
+RAW
+STAGING
+CORE
+MART
+
+###8.2 Warehouse & Role
+
+Warehouse: COMPUTE_WH
+Role: TRANSFORMER
+Privileges granted for dbt transformations
+
+##9. dbt Core Setup
+
+###9.1 Install dbt
+pip install dbt-snowflake
+
+###9.2 dbt Configuration
+profiles.yml: ~/.dbt/profiles.yml
+Project directory: ~/health_finance_claims
+Verify setup:
+dbt debug
+
+###9.3 dbt Components Used
+
+Sources (raw Snowflake tables)
+Staging models
+Snapshots (SCD Type 2)
+Macros
+Tests
+Fact & Dimension marts
+
+##10. Project Structure
+
+health_finance_claims/
+├── airflow/
+│ └── dags/
+├── scripts/
+│ ├── generate_dummy_data.py
+│ └── aws_s3_upload.py
+├── glue/
+│ ├── csv_to_parquet.py
+│ └── parquet_to_snowflake.py
+├── dbt/
+│ ├── models/
+│ ├── snapshots/
+│ ├── macros/
+│ └── tests/
+├── docs/
+│ └── setup_and_installation.md
+└── README.md
+
+##11. Airflow DAG Orchestration
+
+DAG Name:
+health_finance_claims_end_to_end_pipeline
+Execution Flow:
+Generate dummy data (Python)
+Upload files to S3
+Glue job: CSV → Parquet
+Glue job: Parquet → Snowflake
+dbt build
+End
+
+##12. Verification Checklist
+
+Airflow DAG turns green end-to-end
+S3 contains raw and processed data
+Snowflake tables populated
+dbt tests pass successfully
+Parquet partitioning validated
+
+##13. Design Rationale
+
+Airflow chosen for orchestration flexibility and DAG-based dependency management
+AWS Glue used for scalable, serverless Spark processing
+dbt enables analytics engineering best practices (tests, lineage, versioning)
+Snowflake provides performant cloud analytics storage
+WSL2 enables Linux-native tooling on Windows without Docker dependency
